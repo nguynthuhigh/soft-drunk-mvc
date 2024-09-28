@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c96ebd69f1e84f62a2c90edd78731391" Name="Diagram1" ZoomLevel="102">
+        <EntityTypeShape EntityType="Soft_DrunkModel.Category" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Soft_DrunkModel.Customer" Width="1.5" PointX="10.375" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Soft_DrunkModel.Order" Width="1.5" PointX="7.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Soft_DrunkModel.OrderDetail" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Soft_DrunkModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Soft_DrunkModel.User" Width="1.5" PointX="13" PointY="1.625" IsExpanded="true" />
+        <AssociationConnector Association="Soft_DrunkModel.FK_Pro_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="Soft_DrunkModel.FK__Order__CustomerI__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="Soft_DrunkModel.FK_User_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="Soft_DrunkModel.FK__OrderDeta__Order__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="Soft_DrunkModel.FK__OrderDeta__Produ__5629CD9C" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
