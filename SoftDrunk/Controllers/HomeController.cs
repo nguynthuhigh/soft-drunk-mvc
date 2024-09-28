@@ -15,8 +15,7 @@ namespace SoftDrunk.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page. C";
-
+            ViewBag.Message = "Your application description page. Oggy";
             return View();
         }
 
