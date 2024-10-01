@@ -1,0 +1,36 @@
+﻿@model SoftDrunk.Models.User
+
+@{
+    ViewBag.Title = "Register";
+}
+
+@Styles.Render("~/Content/Home/login-form.css")
+
+@using (Html.BeginForm("Register", "Users", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="login-container">
+        <form class="login-form">
+            <h2>Đăng ký</h2>
+            @ViewBag.AccountExists
+            <label for="username">Tên đăng nhập:</label>
+            <input type="text" id="Username" name="Username" placeholder="Tên đăng nhập" required />
+
+            <label for="password">Mật khẩu:</label>
+            <input type="password" id="Password" name="Password" placeholder="Mật khẩu" required />
+
+            <label for="password">Nhập lại mật khẩu:</label>
+            <input type="password" id="confirm_password" name="confirm_password" placeholder="Nhập lại mật khẩu" required />
+
+            <button type="submit">Đăng ký</button>
+
+            <div class="signup-link">
+                Bạn đó có tài khoản? <a href="/Users/Login">Đăng nhập ngay</a>
+            </div>
+        </form>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,59 @@
+﻿.product-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.new-price {
+    color: #0d6efd;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.product-rating {
+    color: #ffc107;
+}
+
+.capacity-btn {
+    margin-right: 10px;
+    padding: 5px 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+}
+
+.color-circle {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.color-dark-blue {
+    background-color: #1e3a8a;
+}
+
+.color-pink {
+    background-color: #fca5a5;
+}
+
+.color-gray {
+    background-color: #d1d5db;
+}
+
+.color-yellow {
+    background-color: #fde047;
+}
+
+.btn-buy-now {
+    background-color: #0d6efd;
+    color: white;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    width: 100%;
+}

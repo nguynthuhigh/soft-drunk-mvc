@@ -1,0 +1,105 @@
+﻿@model SoftDrunk.Models.Cart
+@using System.Globalization
+@using SoftDrunk.Models
+@{
+    ViewBag.Title = "Cart";
+    CultureInfo vietnamCulture = new CultureInfo("vi-VN");
+    User user = Session["Customer"] as User;
+}
+
+@Styles.Render("/Content/Cart/cart-item.css")
+@if (Model != null)
+{
+    using (Html.BeginForm("NewOrder", "Orders", FormMethod.Post))
+    {
+        <div class="container my-5">
+            <div class="card p-4">
+                <h3>Giỏ hàng của bạn</h3>
+                @foreach (var item in Model.Carts)
+                {
+                    <div class="cart-item">
+                        <div class="item-details">
+                            <img src=@Url.Content(item.product.ProductImage) alt="AppleCare+" />
+                            <div>
+                                <h6>@item.product.ProductName</h6>
+                                <span>@item.product.ProductPrice.ToString("N0", vietnamCulture)₫</span>
+                            </div>
+                        </div>
+                        <div class="item-quantity">
+                            @using (Html.BeginForm("DecreaseProduct", "Carts", FormMethod.Post))
+                            {
+                                @Html.Hidden("id", item.product.ProductID)
+                                <button class="btn btn-light">-</button>
+                            }
+                            <input disabled class="view-quantity" type="text" value="@item.quantity" />
+                            @using (@Html.BeginForm("AddToCart", "Carts", FormMethod.Post))
+                            {
+                                @Html.Hidden("id", item.product.ProductID)
+                                <button class="btn btn-light">+</button>
+                            }
+                        </div>
+                    </div>
+                }
+                <div class="discount-section">
+                    <p>Giảm giá: <span class="text-danger">0₫</span></p>
+                    <p>Tạm tính (2 sản phẩm): <strong>@Model.TotalMoney().ToString("N0", vietnamCulture)₫</strong></p>
+                </div>
+
+                <div class="customer-info">
+                    <h5>Thông tin khách hàng</h5>
+                    <h5>@ViewBag.Error</h5>
+                    @if (user.Customers == null || !user.Customers.Any())
+                    {
+                        <a target="_blank" href="/Users/NewInfo">Thêm thông tin trước khi tiếp tục</a>
+                    }
+                    else
+                    {
+                        IEnumerable<Customer> customer = user.Customers;
+                        foreach (var item in customer)
+                        {
+                            <div>
+                                @Html.RadioButton("CustomerID", item.CustomerID, new { @required = "required" }) <span>@item.CustomerName - @item.CustomerPhone - @item.CustomerAddress</span>
+                            </div>
+                        }
+                    }
+
+                <div class="total-section">
+                    <p>Tổng tiền: <strong>@Model.TotalMoney().ToString("N0", vietnamCulture)₫</strong></p>
+                    <div class="form-check">
+                        <input class="form-check-input"
+                               type="checkbox"
+                               value=""
+                               id="termsCheck"
+                               required
+                               checked />
+                        <label class="form-check-label" for="termsCheck">
+                            Tôi đã đọc và đồng ý với
+                            <a href="#">điều khoản và điều kiện</a>
+                        </label>
+                    </div>
+                    <button type="submit" id="submitOrder" class="btn" disabled>Tiến hành đặt hàng</button>
+                </div>
+                </div>
+
+            </div>
+        </div>
+    }
+                }
+
+<script>document.addEventListener("DOMContentLoaded", function() {
+        const customerRadios = document.querySelectorAll('input[name="CustomerID"]');
+        const submitButton = document.getElementById('submitOrder');
+
+        function checkCustomerSelection() {
+            const anyChecked = Array.from(customerRadios).some(radio => radio.checked);
+            submitButton.disabled = !anyChecked; 
+        }
+
+        customerRadios.forEach(radio => {
+            radio.addEventListener('change', checkCustomerSelection);
+        });
+
+        checkCustomerSelection();
+    });</script>
+
+

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -40,6 +41,7 @@ namespace SoftDrunk.Areas.Admin.Controllers
         public ActionResult Create()
         {
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName");
+
             return View();
         }
 
@@ -50,11 +52,15 @@ namespace SoftDrunk.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                HttpPostedFileBase file = product.UploadImage;
+                var fileName = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("/Content/Images"), fileName);
+                file.SaveAs(path);
+                product.ProductImage = "/Content/Images/"+file.FileName;
                 db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", product.CategoryID);
             return View(product);
         }

@@ -1,0 +1,50 @@
+﻿@model SoftDrunk.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@Styles.Render("~/Content/Product/product-details.css")
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img src=@Url.Content(Model.ProductImage)
+                 alt="iPad Gen 10"
+                 class="img-fluid" />
+        </div>
+
+        <div class="col-md-6">
+            <h2>@Model.ProductName</h2>
+            <div class="product-rating">
+                <i class="fas fa-star"></i> <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i> <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+
+            <p class="new-price">
+                @Model.ProductPrice<sup>đ</sup>
+                <span class="old-price">@Model.ProductPrice<sup>đ</sup></span>
+            </p>
+
+            <h6>Loại</h6>
+            <button class="btn capacity-btn">@Model.Category.CategoryName</button>
+            <br>
+            <div class="mt-2">
+                <div class="col-md-12"></div>
+                @using (Html.BeginForm("BuyNow", "Carts", FormMethod.Post))
+                {
+                    @Html.Hidden("id", Model.ProductID)
+                    <button type="submit" class="btn btn-buy-now">MUA NGAY</button>
+                }
+
+            </div>
+
+                <div class="col-md-12 mt-2"></div>
+                @using (Html.BeginForm("AddToCart", "Carts", FormMethod.Post))
+                {
+                    @Html.Hidden("id", Model.ProductID)
+                    <button type="submit" class="btn btn-buy-now">THÊM VÀO GIỎ HÀNG</button>
+                }
+            </div>
+    </div>
+</div>

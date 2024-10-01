@@ -1,0 +1,31 @@
+﻿@model IEnumerable<SoftDrunk.Models.Product>
+@using System.Globalization
+
+<h1 class="text-center">Ipad</h1>
+@Styles.Render("~/Content/Home/home-phone.css")
+@{
+    CultureInfo vietnamCulture = new CultureInfo("vi-VN");
+
+}
+<div class="container-product">
+    @foreach (var item in Model)
+    {
+        <div class="container mt-5">
+            <a style="text-decoration:none" href="/Products/Details/@item.ProductID">
+                <div class="product-card shadow px-3">
+                    <div class="badge-stock">
+                        <img src="https://shopdunk.com/images/uploaded/icon/san-hang-16.png" />
+                    </div>
+                    <img class="mt-5"
+                         src=@Url.Content(item.ProductImage)
+                         alt="@item.ProductName" />
+                    <div class="product-name">@item.ProductName</div>
+                    <div class="price text-left">
+                        @item.ProductPrice.ToString("N0", vietnamCulture)₫<sup class="currency-symbol">đ</sup>
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+</div>
+
