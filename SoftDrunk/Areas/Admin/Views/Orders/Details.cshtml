@@ -11,7 +11,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.OrderDate)
+            Ngày tạo đơn:
         </dt>
 
         <dd>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TotalAmount)
+            Tổng tiền:
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PaymentStatus)
+            Trạng thái thanh toán:
         </dt>
 
         <dd>
@@ -35,7 +35,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AddressDelivery)
+            Địa chỉ giao hàng
         </dt>
 
         <dd>
@@ -43,14 +43,62 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Customer.CustomerName)
+            Tên người đặt
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Customer.CustomerName)
         </dd>
 
+        <dt>
+            Số điện thoại người đặt
+        </dt>
     </dl>
+    <h2 style="margin-top:50px">Orders Details</h2>
+    <table class="table">
+        <tr>
+            <th>
+                Tên sản phẩm
+            </th>
+            <th>
+                Giá
+            </th>
+            <th>
+                Số lượng
+            </th>
+            <th>
+                Tổng
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer.CustomerName)
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model.OrderDetails)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @(item.Quantity * item.UnitPrice)
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    @Html.ActionLink("Product", "Details","Products", new { id = item.ProductID }, new { @class = "btn btn-info" })
+                </td>
+            </tr>
+        }
+
+    </table>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.OrderID }) |
