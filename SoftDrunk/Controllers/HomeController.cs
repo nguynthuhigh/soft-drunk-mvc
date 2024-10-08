@@ -27,6 +27,7 @@ namespace SoftDrunk.Controllers
         }
         public ActionResult IpadProduct(Product product)
         {
+            //12312312
             var products = db.Products.Where(p => p.Category.CategoryName == "Ipad").Take(4).ToList();
             return PartialView(products);
         }
