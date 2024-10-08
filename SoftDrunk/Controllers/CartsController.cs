@@ -36,7 +36,7 @@ namespace SoftDrunk.Controllers
             Product product = db.Products.Where(s => s.ProductID == id).FirstOrDefault();
             if (product == null)
             {
-                ViewBag.ProductNotFound = "Không tìm thấy sản phẩm";
+                ViewBag.ProductNotFound = "Không tìm thấy sản phẩm ABC";
                 return RedirectToAction("Index", "Carts");
             }
             cart.AddToCart(product);
