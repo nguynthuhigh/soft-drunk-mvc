@@ -18,6 +18,7 @@ namespace SoftDrunk.Controllers
         public ActionResult PhoneProduct(Product product)
         {
             var products = db.Products.Where(p => p.Category.CategoryName == "Iphone").Take(4).ToList();
+            //123
             return PartialView(products);
         }
         public ActionResult LaptopProduct(Product product)
